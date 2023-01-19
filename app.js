@@ -21,7 +21,7 @@ dotenv.config();
 //   region: 'eu-west-1',
 // });
 const app = express();
-const port = process.env.port || 80;
+const port = process.env.PORT || 80;
 
 const db = mysql.createConnection({
   host: 'database-2.cp0mlsldpt24.eu-west-1.rds.amazonaws.com',
