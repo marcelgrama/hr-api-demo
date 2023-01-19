@@ -1,6 +1,6 @@
 import express from 'express';
 // import { FreelancerModel } from '../models/Freelancer.js';
-import authMiddleware from '../utils/middlewares/authMiddleware';
+import authMiddleware from '../utils/middlewares/authMiddleware.js';
 const router = express.Router();
 
 // Get all freelancers
