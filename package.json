@@ -21,7 +21,7 @@
     "aws-sdk": "^2.1279.0",
     "babel-preset-env": "^1.7.0",
     "babel-register": "^6.26.0",
-    "bcrypt": "^5.1.0",
+    "bcryptjs": "^2.4.3",
     "body-parser": "latest",
     "cookie-parser": "^1.4.6",
     "dotenv": "^16.0.3",

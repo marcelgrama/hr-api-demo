@@ -1,6 +1,6 @@
 import express from 'express';
 import { UserModel } from '../models/User.js'; // import the User model
-import bcrypt from 'bcrypt'; // import the bcrypt library for password hashing
+import bcrypt from 'bcryptjs'; // import the bcrypt library for password hashing
 import jwt from 'jsonwebtoken';
 import pick from 'lodash/pick.js';
 import omit from 'lodash/omit.js';

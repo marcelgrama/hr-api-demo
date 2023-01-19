@@ -1,6 +1,6 @@
 import express from 'express';
 import { UserModel } from '../models/User.js'; // import the User model
-import bcrypt from 'bcrypt'; // import the bcrypt library for password hashing
+import bcrypt from 'bcryptjs'; // import the bcrypt library for password hashing
 import authMiddleware from '../utils/middlewares/authMiddleware';
 
 const router = express.Router();
