@@ -1,5 +1,5 @@
 {
-  "name": "Elastic-Beanstalk-Sample-App",
+  "name": "elastic-beanstalk-sample-app",
   "version": "0.0.1",
   "main": "server.js",
   "description": "Create API",
@@ -64,5 +64,13 @@
     "lint-staged": "^13.1.0",
     "nodemon": "^2.0.20",
     "prettier": "^2.8.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marcelgrama/base7hr-API.git"
+  },
+  "bugs": {
+    "url": "https://github.com/marcelgrama/base7hr-API/issues"
+  },
+  "homepage": "https://github.com/marcelgrama/base7hr-API#readme"
 }
