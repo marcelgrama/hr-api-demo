@@ -102,3 +102,15 @@ dist
 
 # TernJS port file
 .tern-port
+# Elastic Beanstalk CLI Files
+.elasticbeanstalk/*
+node_modules/
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
