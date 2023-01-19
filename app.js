@@ -2,7 +2,7 @@ import express from 'express';
 import mysql from 'mysql';
 import swaggerUi from 'swagger-ui-express';
 import swaggerSpec from './swagger.js';
-// import routes from './routes/index.js';
+import routes from './routes/index.js';
 import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
 import session from 'express-session';
@@ -76,7 +76,7 @@ app.use(cookies());
 app.use(express.json());
 
 app.use(bodyParser.json());
-// app.use('/api', routes);
+app.use('/api', routes);
 
 // Set up routes
 app.get('/', (req, res) => {
