@@ -8,7 +8,7 @@ import dotenv from 'dotenv';
 import session from 'express-session';
 import cookies from 'cookie-parser';
 // var hike = require('./routes/hike');
-// import swaggerJson from './swagger_output.json';
+import swaggerJson from './swagger_output.json';
 
 dotenv.config();
 
@@ -85,12 +85,12 @@ app.get('/', (req, res) => {
 });
 // app.get('/hikes', hike.index);
 // app.post('/add_hike', hike.add_hike);
-// app.use('/api-docs', swaggerUi.serve, async (_req, res) =>
-//   res.send(swaggerUi.generateHTML(swaggerJson))
-// );
-// app.use('/docs', swaggerUi.serve, async (_req, res) =>
-//   res.send(swaggerUi.generateHTML(swaggerJson))
-// );
+app.use('/api-docs', swaggerUi.serve, async (_req, res) =>
+  res.send(swaggerUi.generateHTML(swaggerJson))
+);
+app.use('/docs', swaggerUi.serve, async (_req, res) =>
+  res.send(swaggerUi.generateHTML(swaggerJson))
+);
 // app.get('/freelancers', (req, res) => {
 //   // Query the database for a list of freelancers
 // });
