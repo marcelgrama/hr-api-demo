@@ -40,7 +40,7 @@
   },
   "scripts": {
     "start": "node --max-http-header-size=16000 server.js",
-    "dev": "nodemon --no-update-notifier ./index.js",
+    "dev": "nodemon --no-update-notifier ./server.js",
     "lint": "eslint --fix --ext .js pages",
     "swagger-autogen": "babel-node swagger.js"
   },

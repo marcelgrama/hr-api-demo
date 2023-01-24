@@ -96,5 +96,5 @@ app.use('/docs', swaggerUi.serve, async (_req, res) =>
 // });
 
 app.listen(port, () =>
-  console.log('Freelancing Agency listening on port 3000!')
+  console.log(`Freelancing Agency listening on port ${port}!`)
 );

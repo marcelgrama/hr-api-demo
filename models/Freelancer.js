@@ -3,14 +3,16 @@ import sequelize from '../config/database.js';
 
 const FreelancerModel = sequelize.define('freelancer', {
   id: {
-    type: DataTypes.UUID,
+    type: DataTypes.INTEGER,
     primaryKey: true,
     defaultValue: Sequelize.UUIDV4,
+    autoIncrement: true,
   },
   user_email: {
     type: DataTypes.STRING,
+    allowNull: false,
     references: {
-      model: 'user',
+      model: 'users',
       key: 'email',
     },
   },
@@ -64,20 +66,32 @@ const FreelancerModel = sequelize.define('freelancer', {
     allowNull: true,
     defaultValue: '0742350070',
   },
+  // main_skills: {
+  //   type: DataTypes.ARRAY(DataTypes.STRING),
+  //   allowNull: true,
+  // },
   main_skills: {
-    type: DataTypes.ARRAY(DataTypes.STRING),
-    allowNull: true,
-    defaultValue: ['Doe'],
+    type: DataTypes.STRING,
+    allowNull: false,
+    get() {
+      return this.getDataValue('main_skills').split(';');
+    },
+    set(val) {
+      this.setDataValue('main_skills', val.join(';'));
+    },
   },
   profile_photo: {
     type: DataTypes.STRING,
     allowNull: true,
-    defaultValue: 'Doe',
   },
   working_experience: {
-    type: DataTypes.ARRAY(DataTypes.JSON),
-    allowNull: true,
-    defaultValue: [{ data: 'sal' }],
+    type: DataTypes.STRING,
+    get: function () {
+      return JSON.parse(this.getDataValue('working_experience'));
+    },
+    set: function (val) {
+      return this.setDataValue('working_experience', JSON.stringify(val));
+    },
   },
   createdAt: {
     type: DataTypes.TIME,
@@ -90,6 +104,9 @@ const FreelancerModel = sequelize.define('freelancer', {
     defaultValue: Sequelize.NOW,
   },
 });
-// await FreelancerModel.sync();
+
+// (async () => {
+//   await FreelancerModel.sync({ alter: true });
+// })();
 
 export { FreelancerModel };
