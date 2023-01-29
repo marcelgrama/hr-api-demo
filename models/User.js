@@ -18,6 +18,12 @@ const UserModel = sequelize.define('user', {
   role: {
     type: DataTypes.ENUM,
     values: ['Freelancer', 'Agency', 'Company', 'Admin'],
+    validate: {
+      isIn: {
+        args: [['Freelancer', 'Agency', 'Company', 'Admin']],
+        msg: 'The status field must be either "open", "pending", or "closed".',
+      },
+    },
     allowNull: false,
   },
   password: {

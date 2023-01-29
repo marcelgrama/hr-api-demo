@@ -1,5 +1,6 @@
 import { Sequelize, DataTypes } from 'sequelize';
 import sequelize from '../config/database.js';
+import { SkillModel } from './Skills.js';
 
 const FreelancerModel = sequelize.define('freelancer', {
   id: {
@@ -66,10 +67,6 @@ const FreelancerModel = sequelize.define('freelancer', {
     allowNull: true,
     defaultValue: '0742350070',
   },
-  // main_skills: {
-  //   type: DataTypes.ARRAY(DataTypes.STRING),
-  //   allowNull: true,
-  // },
   main_skills: {
     type: DataTypes.STRING,
     allowNull: false,
@@ -104,6 +101,8 @@ const FreelancerModel = sequelize.define('freelancer', {
     defaultValue: Sequelize.NOW,
   },
 });
+
+FreelancerModel.belongsToMany(SkillModel, { through: 'freelancerSkills' });
 
 // (async () => {
 //   await FreelancerModel.sync({ alter: true });

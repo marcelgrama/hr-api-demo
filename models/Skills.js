@@ -1,20 +1,22 @@
 import { Sequelize, DataTypes } from 'sequelize';
 import sequelize from '../config/database.js';
 
-const SkillModel = sequelize.define('skill', {
+const SkillModel = sequelize.define('skills', {
   id: {
-    type: DataTypes.UUID,
+    type: DataTypes.INTEGER,
     primaryKey: true,
-    defaultValue: Sequelize.UUIDV4,
+    autoIncrement: true,
   },
   name: {
     type: DataTypes.STRING,
-  },
-  years_of_experience: {
-    type: DataTypes.INTEGER,
+    allowNull: false,
   },
 });
 
-// await SkillModel.sync();
+(async () => {
+  await SkillModel.sync({ alter: true }).catch((err) => {
+    console.log(err);
+  });
+})();
 
 export { SkillModel };

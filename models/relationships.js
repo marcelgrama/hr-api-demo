@@ -8,7 +8,9 @@ SkillModel.hasMany(FreelancerModel, { through: 'FreelancerSkills' });
 JobsModel.belongsToMany(FreelancerModel, { through: 'JobFreelancer' });
 
 // In the Freelancer model
-Freelancer.belongsToMany(JobsModel, { through: 'JobFreelancer' });
+FreelancerModel.belongsToMany(JobsModel, { through: 'JobFreelancer' });
 
 // Now you can use the `addFreelancer` method on a job instance to associate a freelancer with that job
-job.addFreelancer(freelancer);
+JobsModel.addFreelancer(freelancer);
+
+FreelancerModel.addSkills(newSkills);

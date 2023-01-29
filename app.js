@@ -80,20 +80,15 @@ app.use('/api', routes);
 
 // Set up routes
 app.get('/', (req, res) => {
-  console.log('it works');
   res.send({ message: 'it works!' });
 });
-// app.get('/hikes', hike.index);
-// app.post('/add_hike', hike.add_hike);
+
 app.use('/api-docs', swaggerUi.serve, async (_req, res) =>
   res.send(swaggerUi.generateHTML(swaggerJson))
 );
 app.use('/docs', swaggerUi.serve, async (_req, res) =>
   res.send(swaggerUi.generateHTML(swaggerJson))
 );
-// app.get('/freelancers', (req, res) => {
-//   // Query the database for a list of freelancers
-// });
 
 app.listen(port, () =>
   console.log(`Freelancing Agency listening on port ${port}!`)

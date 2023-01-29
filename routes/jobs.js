@@ -38,25 +38,42 @@ router.post('/', async (req, res) => {
 });
 
 router.post('/:id/apply', async (req, res) => {
-  try {
-    const job = await JobsModel.findByPk(req.params.id);
-    if (!job) {
-      res.status(404).json({ error: 'Job not found' });
-      return;
-    }
+  // Get the job and freelancer ID from the request body
+  const jobId = req.params.id;
+  const freelancerId = req.body.freelancerId;
 
-    const freelancerId = req.body.freelancerId;
-    const freelancer = await FreelancerModel.findByPk(freelancerId);
-    if (!freelancer) {
-      res.status(404).json({ error: 'Freelancer not found' });
-      return;
-    }
+  // Find the job and freelancer in the database
+  JobsModel.findByPk(jobId)
+    .then((job) => {
+      if (!job) {
+        return res.status(400).send({ message: 'Job not found' });
+      }
 
-    await job.addFreelancer(freelancer);
-    res.json({ message: 'Freelancer successfully applied to the job' });
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
+      FreelancerModel.findByPk(freelancerId)
+        .then((freelancer) => {
+          if (!freelancer) {
+            return res.status(400).send({ message: 'Freelancer not found' });
+          }
+
+          // Apply the freelancer to the job
+          job
+            .addFreelancer(freelancer)
+            .then(() =>
+              res.send({ message: 'Freelancer successfully applied to job' })
+            )
+            .catch((error) =>
+              res
+                .status(500)
+                .send({ message: 'Failed to apply freelancer to job', error })
+            );
+        })
+        .catch((error) =>
+          res.status(500).send({ message: 'Failed to find freelancer', error })
+        );
+    })
+    .catch((error) =>
+      res.status(500).send({ message: 'Failed to find job', error })
+    );
 });
 
 router.patch('/:id', async (req, res) => {

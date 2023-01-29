@@ -1,6 +1,8 @@
 import express from 'express';
 import { FreelancerModel } from '../models/Freelancer.js';
 import { UserModel } from '../models/User.js';
+import { SkillModel } from '../models/Skills.js';
+
 import authMiddleware from '../utils/middlewares/authMiddleware.js';
 const router = express.Router();
 
@@ -111,4 +113,32 @@ router.post('/', async (req, res) => {
     res.status(400).send({ error: error.message });
   }
 });
+
+router.post('/:freelancerId/skills', async (req, res) => {
+  try {
+    const { freelancerId, skills } = req.body;
+    const freelancer = await FreelancerModel.findByPk(freelancerId);
+    if (!freelancer) {
+      return res.status(400).send({ message: 'Freelancer not found' });
+    }
+
+    for (let i = 0; i < skills.length; i++) {
+      const skill = await SkillModel.findOne({
+        where: { name: skills[i].name },
+      });
+      if (!skill) {
+        return res
+          .status(400)
+          .send({ message: `Skill "${skills[i].name}" not found` });
+      }
+      await freelancer.addSkills(skill);
+    }
+
+    res.send({ message: 'Skills added successfully' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send({ message: 'An error occurred while adding skills' });
+  }
+});
+
 export default router;
