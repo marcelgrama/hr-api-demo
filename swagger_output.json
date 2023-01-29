@@ -1,6 +1,5 @@
 {
   "swagger": "2.0",
-  "openapi": "3.0.0",
   "info": {
     "version": "1.0.0",
     "title": "My API",
@@ -500,10 +499,7 @@
             "example": ""
           }
         },
-        "required": [
-          "name",
-          "age"
-        ]
+        "required": ["name", "age"]
       }
     },
     "securitySchemes": {
