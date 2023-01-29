@@ -7,7 +7,6 @@ import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
 import session from 'express-session';
 import cookies from 'cookie-parser';
-// var hike = require('./routes/hike');
 import swaggerJson from './swagger_output.json';
 
 dotenv.config();
