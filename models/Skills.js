@@ -13,10 +13,10 @@ const SkillModel = sequelize.define('skills', {
   },
 });
 
-(async () => {
-  await SkillModel.sync({ alter: true }).catch((err) => {
-    console.log(err);
-  });
-})();
+// (async () => {
+//   await SkillModel.sync({ alter: true }).catch((err) => {
+//     console.log(err);
+//   });
+// })();
 
 export { SkillModel };
