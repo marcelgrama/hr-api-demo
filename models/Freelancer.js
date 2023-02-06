@@ -90,6 +90,15 @@ const FreelancerModel = sequelize.define('freelancer', {
       return this.setDataValue('working_experience', JSON.stringify(val));
     },
   },
+  education: {
+    type: DataTypes.STRING,
+    get: function () {
+      return JSON.parse(this.getDataValue('education'));
+    },
+    set: function (val) {
+      return this.setDataValue('education', JSON.stringify(val));
+    },
+  },
   createdAt: {
     type: DataTypes.TIME,
     allowNull: true,
