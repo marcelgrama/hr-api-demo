@@ -2,8 +2,10 @@ import express from 'express';
 import { FreelancerModel } from '../models/Freelancer.js';
 import { UserModel } from '../models/User.js';
 import { SkillModel } from '../models/Skills.js';
+import { Sequelize, DataTypes } from 'sequelize';
 
 import authMiddleware from '../utils/middlewares/authMiddleware.js';
+
 const router = express.Router();
 
 // Get all freelancers
@@ -27,6 +29,39 @@ router.get('/:id', async (req, res) => {
     }
   } catch (error) {
     res.status(500).json({ error: error.message });
+  }
+});
+
+// Get freelancers by multiple ids
+router.get('/many', async (req, res) => {
+  try {
+    const freelancerIds = req.query.ids;
+    const arrayOfIds = JSON.parse(
+      freelancerIds.replace(/\(/g, '[').replace(/\)/g, ']')
+    );
+
+    if (!Array.isArray(arrayOfIds)) {
+      return res.status(400).send({ message: 'Ids must be an array' });
+    }
+
+    const freelancers = await FreelancerModel.findAll({
+      where: {
+        id: {
+          [Sequelize.Op.in]: arrayOfIds,
+        },
+      },
+    });
+
+    if (!freelancers) {
+      return res.status(400).send({ message: 'No freelancers found' });
+    }
+
+    res.send({ freelancers });
+  } catch (error) {
+    console.error(error);
+    res
+      .status(500)
+      .send({ message: 'An error occurred while getting freelancers' });
   }
 });
 
