@@ -5,34 +5,10 @@ import { SkillModel } from '../models/Skills.js';
 import { Sequelize, DataTypes } from 'sequelize';
 
 import authMiddleware from '../utils/middlewares/authMiddleware.js';
-
 const router = express.Router();
 
-// Get all freelancers
-router.get('/', async (req, res) => {
-  try {
-    const freelancers = await FreelancerModel.findAll();
-    res.json(freelancers);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
-
-// Get a specific freelancer
-router.get('/:id', async (req, res) => {
-  try {
-    const freelancer = await FreelancerModel.findByPk(req.params.id);
-    if (!freelancer) {
-      res.status(404).json({ error: 'Freelancer not found' });
-    } else {
-      res.json(freelancer);
-    }
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
-
 // Get freelancers by multiple ids
+
 router.get('/many', async (req, res) => {
   try {
     const freelancerIds = req.query.ids;
@@ -40,6 +16,7 @@ router.get('/many', async (req, res) => {
       freelancerIds.replace(/\(/g, '[').replace(/\)/g, ']')
     );
 
+    console.log(typeof arrayOfIds);
     if (!Array.isArray(arrayOfIds)) {
       return res.status(400).send({ message: 'Ids must be an array' });
     }
@@ -62,6 +39,30 @@ router.get('/many', async (req, res) => {
     res
       .status(500)
       .send({ message: 'An error occurred while getting freelancers' });
+  }
+});
+
+// Get all freelancers
+router.get('/', async (req, res) => {
+  try {
+    const freelancers = await FreelancerModel.findAll();
+    res.json(freelancers);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Get a specific freelancer
+router.get('/:id', async (req, res) => {
+  try {
+    const freelancer = await FreelancerModel.findByPk(req.params.id);
+    if (!freelancer) {
+      res.status(404).json({ error: 'Freelancer not found' });
+    } else {
+      res.json(freelancer);
+    }
+  } catch (error) {
+    res.status(500).json({ error: error.message });
   }
 });
 
