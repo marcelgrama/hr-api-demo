@@ -12,4 +12,25 @@ router.get('/', async (req, res) => {
   }
 });
 
+router.post('/', async (req, res) => {
+  try {
+    const skills = req.body.skills;
+
+    const newSkills = [];
+
+    for (let i = 0; i < skills.length; i++) {
+      const [skillItem, created] = await SkillModel.findOrCreate({
+        where: { name: skills[i] },
+        defaults: { name: skills[i] },
+      });
+      newSkills.push(skillItem.dataValues.name);
+    }
+
+    res.send({ message: 'Skills added successfully', skills: newSkills });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send({ message: 'An error occurred while adding skills' });
+  }
+});
+
 export default router;
