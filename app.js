@@ -10,14 +10,14 @@ import cookies from 'cookie-parser';
 import swaggerJson from './swagger_output.json';
 import cors from 'cors';
 
-const corsOptions = {
-  origin: 'http://localhost:3000',
-  credentials: true, //access-control-allow-credentials:true
-  optionSuccessStatus: 200,
-  methods: ['POST', 'GET', 'PATCH', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-};
-app.use(cors(corsOptions));
+// const corsOptions = {
+//   origin: 'http://localhost:3000',
+//   credentials: true, //access-control-allow-credentials:true
+//   optionSuccessStatus: 200,
+//   methods: ['POST', 'GET', 'PATCH', 'DELETE', 'OPTIONS'],
+//   allowedHeaders: ['Content-Type', 'Authorization'],
+// };
+// app.use(cors(corsOptions));
 
 dotenv.config();
 
