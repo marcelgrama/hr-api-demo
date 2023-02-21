@@ -10,6 +10,15 @@ import cookies from 'cookie-parser';
 import swaggerJson from './swagger_output.json';
 import cors from 'cors';
 
+const corsOptions = {
+  origin: 'http://localhost:3000',
+  credentials: true, //access-control-allow-credentials:true
+  optionSuccessStatus: 200,
+  methods: ['POST', 'GET', 'PATCH', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+};
+app.use(cors(corsOptions));
+
 dotenv.config();
 
 // import('./models/relationships.js');
@@ -89,12 +98,7 @@ app.use('/api-docs', swaggerUi.serve, async (_req, res) =>
 app.use('/docs', swaggerUi.serve, async (_req, res) =>
   res.send(swaggerUi.generateHTML(swaggerJson))
 );
-const corsOptions = {
-  origin: '*',
-  methods: ['POST', 'GET', 'PATCH', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-};
-app.use(cors(corsOptions));
+
 app.listen(port, () =>
   console.log(`Freelancing Agency listening on port ${port}!`)
 );
