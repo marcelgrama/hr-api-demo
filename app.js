@@ -8,6 +8,7 @@ import dotenv from 'dotenv';
 import session from 'express-session';
 import cookies from 'cookie-parser';
 import swaggerJson from './swagger_output.json';
+import cors from 'cors';
 
 dotenv.config();
 
