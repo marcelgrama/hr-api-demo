@@ -10,15 +10,6 @@ import cookies from 'cookie-parser';
 import swaggerJson from './swagger_output.json';
 import cors from 'cors';
 
-// const corsOptions = {
-//   origin: 'http://localhost:3000',
-//   credentials: true, //access-control-allow-credentials:true
-//   optionSuccessStatus: 200,
-//   methods: ['POST', 'GET', 'PATCH', 'DELETE', 'OPTIONS'],
-//   allowedHeaders: ['Content-Type', 'Authorization'],
-// };
-// app.use(cors(corsOptions));
-
 dotenv.config();
 
 // import('./models/relationships.js');
@@ -31,6 +22,14 @@ dotenv.config();
 // });
 const app = express();
 const port = process.env.PORT || 80;
+const corsOptions = {
+  origin: 'http://localhost:3000',
+  credentials: true, //access-control-allow-credentials:true
+  optionSuccessStatus: 200,
+  methods: ['POST', 'GET', 'PATCH', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+};
+app.use(cors(corsOptions));
 
 const db = mysql.createConnection({
   host: 'database-2.cp0mlsldpt24.eu-west-1.rds.amazonaws.com',
