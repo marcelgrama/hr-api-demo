@@ -47,8 +47,8 @@ router.post('/', async (req, res) => {
     // set the bearer token as a cookie using the cookie-parser middleware
     res.cookie('auth_token', token, {
       httpOnly: true,
-      secure: true, //changes secure
-      sameSite: 'None', // works for local development
+      secure: false, //changes secure
+      sameSite: 'None', // Strict works for local development
       maxAge: 24 * 60 * 60 * 1000,
     });
 
