@@ -32,6 +32,7 @@ const corsOptions = {
   allowedHeaders: ['Content-Type', 'Authorization'],
 };
 app.use(cors(corsOptions));
+app.set('trust proxy', 1); // trust first proxy
 
 const db = mysql.createConnection({
   host: 'database-2.cp0mlsldpt24.eu-west-1.rds.amazonaws.com',
