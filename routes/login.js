@@ -45,7 +45,12 @@ router.post('/', async (req, res) => {
     );
 
     // set the bearer token as a cookie using the cookie-parser middleware
-    res.cookie('user_auth_token_v1', token, { secure: true });
+    res.cookie('auth_token', token, {
+      httpOnly: true,
+      secure: true, //changes secure
+      sameSite: 'Strict', // works for local development
+      maxAge: 24 * 60 * 60 * 1000,
+    });
 
     // if the email and password are correct, return the user object
     res.send({

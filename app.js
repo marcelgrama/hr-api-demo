@@ -22,8 +22,10 @@ dotenv.config();
 // });
 const app = express();
 const port = process.env.PORT || 80;
+app.use(cookies());
+
 const corsOptions = {
-  origin: 'http://localhost:3000',
+  origin: true,
   credentials: true, //access-control-allow-credentials:true
   optionSuccessStatus: 200,
   methods: ['POST', 'GET', 'PATCH', 'DELETE', 'OPTIONS'],
@@ -79,7 +81,6 @@ const db = mysql.createConnection({
 //     // db.end();
 //   }
 // });
-app.use(cookies());
 
 app.use(express.json());
 
