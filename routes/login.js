@@ -48,7 +48,7 @@ router.post('/', async (req, res) => {
     res.cookie('auth_token', token, {
       httpOnly: true,
       secure: true, //changes secure
-      sameSite: 'Strict', // works for local development
+      sameSite: 'None', // works for local development
       maxAge: 24 * 60 * 60 * 1000,
     });
 
