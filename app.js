@@ -23,11 +23,6 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 80;
 app.use(cookies());
-app.use(
-  session({
-    cookie: { domain: 'http://localhost:3000' },
-  })
-);
 
 const corsOptions = {
   origin: true,
