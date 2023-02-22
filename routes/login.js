@@ -50,7 +50,7 @@ router.post('/', async (req, res) => {
       secure: false, //changes secure
       sameSite: 'None', // Strict works for local development
       maxAge: 24 * 60 * 60 * 1000,
-      domain: 'http://baza7hr-env.eba-ghwh6myh.eu-west-1.elasticbeanstalk.com',
+      domain: 'http://localhost:3000',
     });
 
     // if the email and password are correct, return the user object
