@@ -30,6 +30,16 @@ const UserModel = sequelize.define('user', {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  verificationToken: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
+  verifiedEmail: {
+    type: DataTypes.BOOLEAN,
+    allowNull: false,
+    defaultValue: false,
+  },
+
   createdAt: {
     type: DataTypes.TIME,
     allowNull: false,
@@ -41,6 +51,11 @@ const UserModel = sequelize.define('user', {
     defaultValue: Sequelize.NOW,
   },
 });
-// await UserModel.sync();
+
+// (async () => {
+//   await UserModel.sync({ alter: true }).catch((err) => {
+//     console.log(err);
+//   });
+// })();
 
 export { UserModel };
