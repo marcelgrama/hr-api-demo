@@ -1,0 +1,82 @@
+{
+  "name": "elastic-beanstalk-sample-app",
+  "version": "0.0.1",
+  "main": "server.js",
+  "description": "Create API",
+  "author": "Base7 property",
+  "license": "UNLICENSED",
+  "private": true,
+  "engines": {
+    "node": "14.x",
+    "npm": ">=6"
+  },
+  "pre-commit": "lint-staged",
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "git add"
+    ]
+  },
+  "dependencies": {
+    "aws-sdk": "^2.1279.0",
+    "axios": "^1.3.2",
+    "babel-preset-env": "^1.7.0",
+    "babel-register": "^6.26.0",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "latest",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "crypto": "^1.0.1",
+    "dotenv": "^16.0.3",
+    "ejs": "latest",
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "glob": "^8.0.3",
+    "jsonwebtoken": "^9.0.0",
+    "lodash": "^4.17.21",
+    "monday-sdk-js": "^0.1.6",
+    "mysql": "^2.18.1",
+    "mysql2": "^2.3.3",
+    "nodemailer": "^6.9.1",
+    "request": "^2.88.2",
+    "sequelize": "^6.28.0",
+    "swagger-autogen": "^2.22.0",
+    "swagger-jsdoc": "^6.2.7",
+    "swagger-ui-express": "^4.6.0"
+  },
+  "scripts": {
+    "start": "node --max-http-header-size=16000 server.js",
+    "dev": "nodemon --no-update-notifier ./server.js",
+    "lint": "eslint --fix --ext .js pages",
+    "swagger-autogen": "babel-node swagger.js"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.20.7",
+    "@babel/node": "^7.20.7",
+    "@babel/plugin-proposal-object-rest-spread": "^7.20.7",
+    "@babel/preset-env": "^7.20.2",
+    "babel-eslint": "^10.1.0",
+    "babel-loader": "^7.1.5",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-es2017": "^6.24.1",
+    "eslint": "^8.30.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-loader": "^4.0.2",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jsx-a11y": "^6.6.1",
+    "husky": "^8.0.2",
+    "lint-staged": "^13.1.0",
+    "nodemon": "^2.0.20",
+    "prettier": "^2.8.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marcelgrama/base7hr-API.git"
+  },
+  "bugs": {
+    "url": "https://github.com/marcelgrama/base7hr-API/issues"
+  },
+  "homepage": "https://github.com/marcelgrama/base7hr-API#readme"
+}
