@@ -74,7 +74,7 @@ router.post('/', async (req, res) => {
       console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
       // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
     } catch (e) {
-      console.log(e, 'error transporter[]][]');
+      console.log(e, 'error transporter');
     }
     // return the created user object
     res.send({

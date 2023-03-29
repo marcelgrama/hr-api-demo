@@ -9,14 +9,13 @@ const router = express.Router();
 
 // Get freelancers by multiple ids
 
-router.get('/many', async (req, res) => {
+router.get('/many',authMiddleware, async (req, res) => {
   try {
     const freelancerIds = req.query.ids;
     const arrayOfIds = JSON.parse(
       freelancerIds.replace(/\(/g, '[').replace(/\)/g, ']')
     );
 
-    console.log(typeof arrayOfIds);
     if (!Array.isArray(arrayOfIds)) {
       return res.status(400).send({ message: 'Ids must be an array' });
     }
@@ -53,7 +52,7 @@ router.get('/', async (req, res) => {
 });
 
 // Get a specific freelancer
-router.get('/:id', async (req, res) => {
+router.get('/:id',authMiddleware, async (req, res) => {
   try {
     const freelancer = await FreelancerModel.findByPk(req.params.id);
     if (!freelancer) {
@@ -66,7 +65,7 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-router.post('/:id/hire', async (req, res) => {
+router.post('/:id/hire',authMiddleware, async (req, res) => {
   try {
     const freelancer = await FreelancerModel.findByPk(req.params.id);
     if (!freelancer) {
@@ -82,7 +81,7 @@ router.post('/:id/hire', async (req, res) => {
   }
 });
 
-router.patch('/:id', async (req, res) => {
+router.patch('/:id',authMiddleware, async (req, res) => {
   try {
     const freelancer = await FreelancerModel.findByPk(req.params.id);
     if (!freelancer) {
@@ -100,7 +99,7 @@ router.patch('/:id', async (req, res) => {
   }
 });
 
-router.post('/', async (req, res) => {
+router.post('/',authMiddleware, async (req, res) => {
   try {
     const {
       name,

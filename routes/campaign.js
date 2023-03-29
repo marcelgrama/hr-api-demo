@@ -1,7 +1,5 @@
 import express from 'express';
 import { FreelancerTableForNotifications } from '../models/FreelancerTableForNotifications.js'; // import the User model
-import bcrypt from 'bcryptjs'; // import the bcrypt library for password hashing
-import authMiddleware from '../utils/middlewares/authMiddleware';
 import mondaySdk from 'monday-sdk-js';
 import request from 'request';
 
@@ -26,7 +24,6 @@ router.get('/sync-monday-rds', async (req, res) => {
       pulse_id: 'id',
     };
     const mondayKeys = Object.keys(objKeys).join();
-    console.log(token, 'intra[][]]');
     const freelancerID = [''].join(); // You can pass the id's in this array to filter the exact user
 
     const response = await monday
@@ -67,10 +64,9 @@ router.get('/sync-monday-rds', async (req, res) => {
         phone: newObj.phone,
         main_skills: newObj.main_skills,
       }).catch((e) => {
-        console.log(e, 'eeeee------');
+        console.log(e);
       });
 
-      console.log(newObj, 'new[][][');
     });
     // return the created user object
     res.send(items);
